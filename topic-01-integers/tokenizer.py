@@ -13,6 +13,7 @@ patterns = [
     [r"\)", ")"],
     [r"\s+","whitespace"],
     [r".","error"]
+    #------
 ]
 
 for pattern in patterns:
