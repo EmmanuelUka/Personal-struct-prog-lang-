@@ -23,3 +23,8 @@ print x;
 print "Hello!";
 print "My dog is " + "Dorothy"
 
+homework = True
+if (homework==True) {
+   euka;
+   print(_kentid_)
+}
