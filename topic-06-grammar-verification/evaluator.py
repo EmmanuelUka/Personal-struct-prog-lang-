@@ -101,6 +101,11 @@ def evaluate(ast, environment={}):
         left_value = evaluate(ast["left"], environment)
         right_value = evaluate(ast["right"], environment)
         return left_value != right_value
+    if ast['    tag'] == 'euka':
+        environment["_kentid_"] = 'euka@kent.edu'
+        return 'euka@kent.edu'
+    if ast['tag'] == 'boolean':
+        return True
 
 
 def test_evaluate_number():

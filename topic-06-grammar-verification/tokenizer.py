@@ -2,6 +2,7 @@ import re
 
 # Define patterns for tokens
 patterns = [
+    [r"euka","euka"],
     [r"print","print"],
     [r"if","if"],
     [r"else","else"],

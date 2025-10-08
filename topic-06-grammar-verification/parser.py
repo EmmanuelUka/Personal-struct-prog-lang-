@@ -29,6 +29,23 @@ grammar = """
 
 # --- Parsing Functions and Their Tests ---
 
+def parse_euka(tokens):
+    """
+    euka = "euka"
+    """
+    token = token[0]
+    if token['tag'] == 'euka':
+        return {"tag": "euka", "_kentid_": 'euka@kent.edu'}, tokens[1:]
+
+def test_eukaParse():
+    """euka = "euka""
+    """
+    print("testing euka parse")
+    tokens = tokenize('euka')
+    ast, tokens = parse_euka(tokens)
+    assert ast == {"tag": "euka", "_kentid_": 'euka@kent.edu'}
+    assert tokens[0]['tag'] is None
+
 def parse_factor(tokens):
     """
     factor = <number> | <string> | <identifier> | "(" expression ")" | "!" expression | "-" expression
