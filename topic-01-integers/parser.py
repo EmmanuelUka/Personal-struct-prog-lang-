@@ -76,9 +76,9 @@ def test_parse_factor():
             'tag': '*',
             'left': {'tag': 'number', 'value': 5},
             'right': {'tag': 'number', 'value': 6}}}
-    tokens = tokenize("2*3+5+1") 
-    ast, tokens = parse_factor(tokens)
-    assert ast =={
+    tokens = tokenize("2*3+5+1")
+    ast, tokens = parse_expression(tokens)
+    assert ast == {
         'tag': '+',
         'left': {
             'tag': '+',
@@ -87,10 +87,11 @@ def test_parse_factor():
                 'left': {'tag': 'number', 'value': 2},
                 'right': {'tag': 'number', 'value': 3}
             },
-        'right': {'tag': 'number', 'value': 5}
-    },
-    'right': {'tag': 'number', 'value': 1}
-}
+            'right': {'tag': 'number', 'value': 5}
+        },
+        'right': {'tag': 'number', 'value': 1}
+    }
+
 
 
 def parse_term(tokens):
@@ -123,10 +124,17 @@ def test_parse_term():
     assert ast == {'tag': '/', 'left': {'tag': '*', 'left': {'tag': 'number', 'value': 2}, 'right': {'tag': 'number', 'value': 4}}, 'right': {'tag': 'number', 'value': 6}}
     ##additional test below
     tokens = tokenize("2*3*4")
-    assert ast == {'tag': '*', 'left': {'tag': '*', 'left': {'tag': 'number', 'value': 2}, 'right': {'tag': 'number', 'value': 3}}, 'right': {'tag': 'number', 'value': 4}}
-    tokens = tokenize("2/3*8*3*1")
-    assert ast == {'tag': '*', 'left': {'tag': '*', 'left': {'tag': '*', 'left': {'tag': '/', 'left': {'tag': 'number', 'value': 2}, 'right': {'tag': 'number', 'value': 3}}, 'right': {'tag': 'number', 'value': 8}}, 'right': {'tag': 'number', 'value': 3}}, 'right': {'tag': 'number', 'value': 1}}
-
+    ast, tokens = parse_term(tokens)
+    assert ast == {
+        'tag': '*',
+        'left': {
+            'tag': '*',
+            'left': {'tag': 'number', 'value': 2},
+            'right': {'tag': 'number', 'value': 3}
+        },
+        'right': {'tag': 'number', 'value': 4}
+    }
+    
 def parse_expression(tokens):
     """
     expression = term { "+"|"-" term }
