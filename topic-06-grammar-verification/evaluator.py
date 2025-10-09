@@ -101,11 +101,16 @@ def evaluate(ast, environment={}):
         left_value = evaluate(ast["left"], environment)
         right_value = evaluate(ast["right"], environment)
         return left_value != right_value
-    if ast['    tag'] == 'euka':
+    if ast['tag'] == 'euka':
         environment["_kentid_"] = 'euka@kent.edu'
         return 'euka@kent.edu'
     if ast['tag'] == 'boolean':
         return True
+
+
+def test_eukaStatement():
+    print("testing euka statement")
+    assert evaluate({"tag":"euka","_kentid_":'euka@kent.edu'}) == "euka@kent.edu"
 
 
 def test_evaluate_number():
@@ -232,14 +237,15 @@ def test_while_statement():
     assert env["y"] == 7
 
 if __name__ == "__main__":
-    test_evaluate_number()
-    test_evaluate_addition()
-    test_evaluate_subtraction()
-    test_evaluate_multiplication()
-    test_evaluate_division()
-    test_evaluate_expression()
-    test_evaluate_print()
-    test_evaluate_identifier()
-    test_if_statement()
-    test_while_statement()
+    # test_evaluate_number()
+    # test_evaluate_addition()
+    # test_evaluate_subtraction()
+    # test_evaluate_multiplication()
+    # test_evaluate_division()
+    # test_evaluate_expression()
+    # test_evaluate_print()
+    # test_evaluate_identifier()
+    # test_if_statement()
+    # test_while_statement()
+    test_eukaStatement()
     print("done.")

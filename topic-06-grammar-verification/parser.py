@@ -21,6 +21,7 @@ grammar = """
     statement_block = "{" statement { ";" statement } "}"
     assignment_statement = expression [ "=" expression ]
     print_statement = "print" [ expression ]
+    euka = "euka"
     if_statement = "if" "(" expression ")" statement_block [ "else" statement_block ]
     while_statement = "while" "(" expression ")" statement_block
     statement = statement_block | if_statement | while_statement | print_statement | assignment_statement
@@ -29,22 +30,25 @@ grammar = """
 
 # --- Parsing Functions and Their Tests ---
 
+
 def parse_euka(tokens):
     """
     euka = "euka"
     """
-    token = token[0]
+    token = tokens[0]
     if token['tag'] == 'euka':
         return {"tag": "euka", "_kentid_": 'euka@kent.edu'}, tokens[1:]
 
 def test_eukaParse():
-    """euka = "euka""
     """
-    print("testing euka parse")
+    euka = "euka"
+    """
+    print("testing eukaParse()")
     tokens = tokenize('euka')
     ast, tokens = parse_euka(tokens)
-    assert ast == {"tag": "euka", "_kentid_": 'euka@kent.edu'}
-    assert tokens[0]['tag'] is None
+    assert ast == {'tag': 'euka', '_kentid_': 'euka@kent.edu'}
+    assert tokens[0]["tag"] is None
+
 
 def parse_factor(tokens):
     """
@@ -55,6 +59,9 @@ def parse_factor(tokens):
         return {"tag": "number", "value": token["value"]}, tokens[1:]
     if token["tag"] == "string":
         return {"tag": "string", "value": token["value"]}, tokens[1:]
+    if token["tag"] == "boolean":
+        # Tokenizer uses the tag 'boolean' for TRUE literals.
+        return {"tag": "boolean", "value": True}, tokens[1:]
     if token["tag"] == "identifier":
         return {"tag": "identifier", "value": token["value"]}, tokens[1:]
     if token["tag"] == "(":
@@ -411,6 +418,15 @@ def test_parse_statement_block():
         ]
     }
 
+def parse_eukaStatement(tokens):
+    """
+    euka = "euka"
+    """
+    assert tokens[0]["tag"] == "euka", f"Expected 'euka', got {tokens[0]}"
+    tokens = tokens[1:]
+    return {"tag": "euka"}, tokens
+
+
 def parse_print_statement(tokens):
     """
     print_statement = "print" [ expression ]
@@ -542,6 +558,8 @@ def parse_statement(tokens):
         return parse_while_statement(tokens)
     if tag == "print":
         return parse_print_statement(tokens)
+    if tag == "euka":
+        return parse_eukaStatement(tokens)
     return parse_assignment_statement(tokens)
 
 def test_parse_statement():
@@ -612,7 +630,9 @@ if __name__ == "__main__":
         test_parse_assignment_statement,
         test_parse_statement,
         test_parse_program,
+        test_eukaParse,
     ]
+
 
     untested_grammar = normalized_grammar
 
