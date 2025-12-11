@@ -1,0 +1,40 @@
+{
+  "runner": "final-project\\runner.py",
+  "source": "final-project\\multi_test.t",
+  "warmup_runs": 1,
+  "timed_runs": 3,
+  "timings": [
+    0.12509610000415705,
+    0.11933770000177901,
+    0.1234693000005791
+  ],
+  "mean": 0.12263436666883838,
+  "stdev": 0.0024238575175651424,
+  "min": 0.11933770000177901,
+  "max": 0.12509610000415705,
+  "run_details": [
+    {
+      "run": 1,
+      "time": 0.12509610000415705,
+      "return_code": 0,
+      "stdout": "Starting multi-function benchmark...\nFib sum (0..9): 88\nFactorial sum (0..9): 409114\nSum 1..100: 5050\nOriginal array length: 50\nReversed array length: 50\nCPU loop result: 14995\nBenchmark complete.\nResult: Benchmark complete., Status: None\n",
+      "stderr": ""
+    },
+    {
+      "run": 2,
+      "time": 0.11933770000177901,
+      "return_code": 0,
+      "stdout": "Starting multi-function benchmark...\nFib sum (0..9): 88\nFactorial sum (0..9): 409114\nSum 1..100: 5050\nOriginal array length: 50\nReversed array length: 50\nCPU loop result: 14995\nBenchmark complete.\nResult: Benchmark complete., Status: None\n",
+      "stderr": ""
+    },
+    {
+      "run": 3,
+      "time": 0.1234693000005791,
+      "return_code": 0,
+      "stdout": "Starting multi-function benchmark...\nFib sum (0..9): 88\nFactorial sum (0..9): 409114\nSum 1..100: 5050\nOriginal array length: 50\nReversed array length: 50\nCPU loop result: 14995\nBenchmark complete.\nResult: Benchmark complete., Status: None\n",
+      "stderr": ""
+    }
+  ],
+  "microbench_enabled": true,
+  "microbench_targets": null
+}

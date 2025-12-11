@@ -1,0 +1,2 @@
+cd C:\Users\emman\OneDrive\Desktop\Personal-struct-prog-lang-
+python .\final-project\bench.py --runner final-project\runner.py --source final-project\profile_test.t --warmup 1 --runs 3 --microbench --micro-targets fib --output-base final-project\micro_run --save final-project\results.json
